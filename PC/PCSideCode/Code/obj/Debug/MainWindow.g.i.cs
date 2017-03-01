@@ -40,6 +40,22 @@ namespace Code {
     /// </summary>
     public partial class MainWindow : System.Windows.Window, System.Windows.Markup.IComponentConnector {
         
+        
+        #line 10 "..\..\MainWindow.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Button FillamentSettingsButton;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 11 "..\..\MainWindow.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Button StartPrintingButton;
+        
+        #line default
+        #line hidden
+        
         private bool _contentLoaded;
         
         /// <summary>
@@ -68,6 +84,21 @@ namespace Code {
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1800:DoNotCastUnnecessarily")]
         void System.Windows.Markup.IComponentConnector.Connect(int connectionId, object target) {
+            switch (connectionId)
+            {
+            case 1:
+            this.FillamentSettingsButton = ((System.Windows.Controls.Button)(target));
+            
+            #line 10 "..\..\MainWindow.xaml"
+            this.FillamentSettingsButton.Click += new System.Windows.RoutedEventHandler(this.FillamentSettingsButton_Click);
+            
+            #line default
+            #line hidden
+            return;
+            case 2:
+            this.StartPrintingButton = ((System.Windows.Controls.Button)(target));
+            return;
+            }
             this._contentLoaded = true;
         }
     }

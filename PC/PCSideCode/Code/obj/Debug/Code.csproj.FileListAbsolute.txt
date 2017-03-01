@@ -1,1 +1,2 @@
 C:\Users\Lubo\Documents\Visual Studio 2015\Projects\PCSideCode\Code\bin\Debug\Code.exe.config
+C:\Users\Lubo\Desktop\DiplomnaCode\PC\PCSideCode\Code\bin\Debug\Code.exe.config
