@@ -1,2 +1,21 @@
 C:\Users\Lubo\Documents\Visual Studio 2015\Projects\PCSideCode\Code\bin\Debug\Code.exe.config
 C:\Users\Lubo\Desktop\DiplomnaCode\PC\PCSideCode\Code\bin\Debug\Code.exe.config
+C:\Users\Lubo\Desktop\DiplomnaCode\PC\PCSideCode\Code\obj\Debug\Code.csprojResolveAssemblyReference.cache
+C:\Users\Lubo\Desktop\DiplomnaCode\PC\PCSideCode\Code\obj\Debug\AddFilamentPage.g.cs
+C:\Users\Lubo\Desktop\DiplomnaCode\PC\PCSideCode\Code\obj\Debug\FillamentConfiguration.g.cs
+C:\Users\Lubo\Desktop\DiplomnaCode\PC\PCSideCode\Code\obj\Debug\App.g.cs
+C:\Users\Lubo\Desktop\DiplomnaCode\PC\PCSideCode\Code\obj\Debug\Code_MarkupCompile.cache
+C:\Users\Lubo\Desktop\DiplomnaCode\PC\PCSideCode\Code\obj\Debug\Code_MarkupCompile.lref
+C:\Users\Lubo\Desktop\DiplomnaCode\PC\PCSideCode\Code\bin\Debug\Code.exe
+C:\Users\Lubo\Desktop\DiplomnaCode\PC\PCSideCode\Code\bin\Debug\Code.pdb
+C:\Users\Lubo\Desktop\DiplomnaCode\PC\PCSideCode\Code\obj\Debug\AddFilamentPage.baml
+C:\Users\Lubo\Desktop\DiplomnaCode\PC\PCSideCode\Code\obj\Debug\FillamentConfiguration.baml
+C:\Users\Lubo\Desktop\DiplomnaCode\PC\PCSideCode\Code\obj\Debug\Code.g.resources
+C:\Users\Lubo\Desktop\DiplomnaCode\PC\PCSideCode\Code\obj\Debug\Code.Properties.Resources.resources
+C:\Users\Lubo\Desktop\DiplomnaCode\PC\PCSideCode\Code\obj\Debug\Code.csproj.GenerateResource.Cache
+C:\Users\Lubo\Desktop\DiplomnaCode\PC\PCSideCode\Code\obj\Debug\Code.exe
+C:\Users\Lubo\Desktop\DiplomnaCode\PC\PCSideCode\Code\obj\Debug\Code.pdb
+C:\Users\Lubo\Desktop\DiplomnaCode\PC\PCSideCode\Code\obj\Debug\HomePage.g.cs
+C:\Users\Lubo\Desktop\DiplomnaCode\PC\PCSideCode\Code\obj\Debug\PrintingPage.g.cs
+C:\Users\Lubo\Desktop\DiplomnaCode\PC\PCSideCode\Code\obj\Debug\HomePage.baml
+C:\Users\Lubo\Desktop\DiplomnaCode\PC\PCSideCode\Code\obj\Debug\PrintingPage.baml
