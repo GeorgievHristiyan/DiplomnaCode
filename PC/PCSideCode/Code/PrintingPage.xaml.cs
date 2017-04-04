@@ -27,24 +27,29 @@ namespace Code
 
         private ArduinoSerialCommunication arduino = new ArduinoSerialCommunication();
         private Storyboard BusyCicleStoryBoard { get; set; }
+
+        private List<string>.Enumerator memoryService = new InMemoryDataService().GetBusyCicles().GetEnumerator();
         public PrintingPage()
         {
             InitializeComponent();
             BusyCicleStoryBoard = ((Storyboard)FindResource("BusyCicleStoryboard"));
-            StartCommunicationProcess();
 
-            //((Storyboard)FindResource("WaitStoryboard")).Begin();
+            Thread communicationProcess = new Thread(() => StartCommunicationProcess());
+            communicationProcess.Start();
+            ((Storyboard)FindResource("WaitStoryboard")).Begin();
         }
 
+
+        private void InitBusyCicle()
+        {
+            SetBusyCicle(memoryService.Current);
+            memoryService.MoveNext();
+            ShowBusyCicle();
+        }
         private void StartCommunicationProcess()
         {
-            //Multi-threaded for every busyCicle one thread start!
-            Thread waitingBusyCicle = new Thread(() => EnableArduino());
-
-            SetBusyCicle();
-            ShowBusyCicle();
-
-            waitingBusyCicle.Start();
+            InitBusyCicle();
+            EnableArduino();
         }
 
         private void EnableArduino()
@@ -53,9 +58,10 @@ namespace Code
             {
                 //Aruino is undefined 
                 throw new Exception();
-            }else
+            }
+            else
             {
-                Thread.Sleep(3000);
+                Thread.Sleep(300);
                 HideBusyCicle();
                 //TODO : Change labels!
                 EnablePrinter();
@@ -64,7 +70,9 @@ namespace Code
 
         private void EnablePrinter()
         {
-
+            InitBusyCicle();
+            Thread.Sleep(300);
+            HideBusyCicle();
         }
 
         private void SetBusyCicle(string busyCicleName)
@@ -75,10 +83,10 @@ namespace Code
             random.CenterX = 16;
             random.CenterX = 15.6;
             BusyCicle.RenderTransform = random;
-            
         }
 
-        private void ShowBusyCicle() {
+        private void ShowBusyCicle()
+        {
             BusyCicleStoryBoard.Begin(BusyCicle);
         }
 
@@ -86,11 +94,13 @@ namespace Code
         {
             BusyCicleStoryBoard.Stop();
             BusyCicle.Visibility = Visibility.Hidden;
+            
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        private void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            InitBusyCicle();
+            arduino.Send($"{ HandshakeCommands.ColorIsSelected.ToString() }-{ textBox.Text }");
         }
     }
 }

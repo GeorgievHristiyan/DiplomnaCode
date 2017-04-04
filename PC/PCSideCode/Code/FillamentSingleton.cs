@@ -24,9 +24,15 @@ namespace Code
             }
            
         }
+        
+        public static Fillament LastAdded()
+        {
+            return fillaments.Count == 0 ? null : fillaments.Last();
+        }
 
         public static List<Fillament> GetFillaments()
         {
+            //Have to get them from a file like a db
             return fillaments;
         }
     }

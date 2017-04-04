@@ -20,6 +20,7 @@ namespace Code
     /// </summary>
     public partial class AddFilamentPage : Page
     {
+        private FillamentConfiguration FillamentConfigPage { get; set; }
         public AddFilamentPage()
         {
             InitializeComponent();
@@ -27,13 +28,25 @@ namespace Code
 
         private void AddFilamentButton_Click(object sender, RoutedEventArgs e)
         {
-            Fillament new_fillament = new Fillament();
-            new_fillament.Name = this.NameTextBox.Text;
-            new_fillament.Color = this.ColorTextBox.Text;
-            new_fillament.Length = int.Parse(this.LengthTextBox.Text);
-            new_fillament.Material = this.MaterialTextBox.Text;
+            Fillament newFillament = new Fillament();
+            Fillament lastAddedFillament = FillamentSingleton.LastAdded();
 
-            this.NavigationService.Navigate(new FillamentConfiguration(new_fillament));
+            if (lastAddedFillament != null)
+            {
+                newFillament.Id = lastAddedFillament.Id + 1;
+            }else
+            {
+                newFillament.Id = 1;
+            }
+
+            newFillament.Name = this.NameTextBox.Text;
+            newFillament.Color = this.ColorTextBox.Text;
+            newFillament.Length = int.Parse(this.LengthTextBox.Text);
+            newFillament.Material = this.MaterialTextBox.Text;
+
+            FillamentSingleton.AddFillament(newFillament);
+
+            this.NavigationService.GoBack();
         }
     }
 }

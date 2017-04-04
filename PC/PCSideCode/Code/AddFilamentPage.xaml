@@ -9,24 +9,24 @@
       Title="AddFilamentPage">
 
     <Grid>
-        <Label x:Name="label" Content="Name : " HorizontalAlignment="Left" Margin="25,34,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Width="82"/>
-        <TextBox x:Name="NameTextBox" HorizontalAlignment="Left" Height="20" Margin="128,42,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="146"/>
-        <Button x:Name="AddFilamentButton" Content="Add" HorizontalAlignment="Left" Margin="62,213,0,0" VerticalAlignment="Top" Width="173" Click="AddFilamentButton_Click"/>
-        <Label x:Name="label1" Content="Color :" HorizontalAlignment="Left" Margin="26,70,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" FontSize="16" FontWeight="Bold" Width="72">
+        <Label x:Name="label" Content="Name : " HorizontalAlignment="Left" Margin="23,21,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Width="82" Height="49"/>
+        <TextBox x:Name="NameTextBox" HorizontalAlignment="Left" Height="29" Margin="128,34,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="146"/>
+        <Button x:Name="AddFilamentButton" Content="Add" HorizontalAlignment="Left" Margin="62,248,0,0" VerticalAlignment="Top" Width="173" Click="AddFilamentButton_Click" Height="29"/>
+        <Label x:Name="label1" Content="Color :" HorizontalAlignment="Left" Margin="21,73,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" FontSize="16" FontWeight="Bold" Width="72" Height="48">
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
-                    <SkewTransform AngleX="1.702"/>
+                    <SkewTransform AngleX="1.134"/>
                     <RotateTransform/>
                     <TranslateTransform X="0.314"/>
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <Label x:Name="label2" Content="Length :" HorizontalAlignment="Left" Margin="25,111,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Width="86"/>
-        <Label x:Name="label3" Content="Material :" HorizontalAlignment="Left" Margin="25,148,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Width="100"/>
-        <TextBox x:Name="ColorTextBox" HorizontalAlignment="Left" Height="17" Margin="128,79,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="146"/>
-        <TextBox x:Name="LengthTextBox" HorizontalAlignment="Left" Height="17" Margin="128,119,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="146" RenderTransformOrigin="1.214,-0.896"/>
-        <TextBox x:Name="MaterialTextBox" HorizontalAlignment="Left" Height="17" Margin="128,156,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="146"/>
+        <Label x:Name="label2" Content="Length :" HorizontalAlignment="Left" Margin="23,120,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Width="86" Height="47"/>
+        <Label x:Name="label3" Content="Material :" HorizontalAlignment="Left" Margin="23,167,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Width="100" Height="48"/>
+        <TextBox x:Name="ColorTextBox" HorizontalAlignment="Left" Height="26" Margin="128,83,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="146"/>
+        <TextBox x:Name="LengthTextBox" HorizontalAlignment="Left" Height="25" Margin="128,133,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="146" RenderTransformOrigin="1.214,-0.896"/>
+        <TextBox x:Name="MaterialTextBox" HorizontalAlignment="Left" Height="26" Margin="128,179,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="146"/>
 
     </Grid>
 </Page>

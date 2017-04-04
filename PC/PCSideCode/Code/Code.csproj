@@ -55,7 +55,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ResizableWin.xaml.cs">
+      <DependentUpon>ResizableWin.xaml</DependentUpon>
+    </Compile>
     <Page Include="AddFilamentPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditFillamentPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -74,6 +81,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="EditFillamentPage.xaml.cs">
+      <DependentUpon>EditFillamentPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Fillament.cs" />
     <Compile Include="FillamentConfiguration.xaml.cs">
       <DependentUpon>FillamentConfiguration.xaml</DependentUpon>
@@ -86,8 +96,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ResizableWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InMemoryDataService.cs" />
     <Compile Include="PrintingPage.xaml.cs">
       <DependentUpon>PrintingPage.xaml</DependentUpon>
     </Compile>
@@ -121,9 +136,9 @@
     <Resource Include="Fonts\BusyCircle.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SerialCommunication\SerialCommunication.csproj">
-      <Project>{EA5D8BFD-F6E0-4831-B994-BD1BE7B9B133}</Project>
-      <Name>SerialCommunication</Name>
+    <ProjectReference Include="..\SerialCommunicationLibrary\SerialCommunicationLibrary.csproj">
+      <Project>{faed0943-37b4-4394-a16d-192cfcf98342}</Project>
+      <Name>SerialCommunicationLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
