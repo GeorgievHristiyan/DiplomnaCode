@@ -43,6 +43,7 @@
     <Compile Include="ArduinoSerialCommunication.cs" />
     <Compile Include="HandshakeCommands.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SerialComunication.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ArduinoSideComunication.ino" />

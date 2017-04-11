@@ -4,11 +4,29 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Code"
-      mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
-      Title="EditFillamentPage">
+      mc:Ignorable="d"
+      Title="EditFillamentPage" Height="340.571" Width="329.095">
 
-    <Grid>
-        
+    <Grid Margin="0,0,-0.2,-0.2">
+        <Grid  Margin="10,31,0,265" Opacity="1" Name="Grid" MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave" MouseDown="Grid_MouseDown">
+            <TextBox x:Name="NameTextBox" HorizontalAlignment="Left" Height="23" Margin="147,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+            <Label x:Name="EditPageNameLabel" Content="Name :" HorizontalAlignment="Left" Margin="57,3,0,0" VerticalAlignment="Top" Width="73" FontSize="16" FontWeight="Bold"/>
+        </Grid>
+
+        <Grid Margin="10,90,0,205" Opacity="1" MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave" MouseDown="Grid_MouseDown">
+            <TextBox x:Name="ColorTextBox" HorizontalAlignment="Left" Height="23" Margin="147,12,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+            <Label x:Name="EditPageColorLabel" Content="Color :" HorizontalAlignment="Left" Margin="57,4,0,0" VerticalAlignment="Top" Width="73" FontSize="16" FontWeight="Bold"/>
+        </Grid>
+
+        <Grid Margin="10,148,0,146" Opacity="1" MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave" MouseDown="Grid_MouseDown">
+            <TextBox x:Name="LengthTextBox" HorizontalAlignment="Left" Height="23" Margin="147,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+            <Label x:Name="EditPageLengthPage" Content="Length :" HorizontalAlignment="Left" Margin="57,5,0,0" VerticalAlignment="Top" Width="73" FontSize="16" FontWeight="Bold"/>
+
+        </Grid>
+        <Grid Margin="10,195,0,97" Opacity="1" MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave" MouseDown="Grid_MouseDown">
+            <TextBox x:Name="MaterialTextBox" HorizontalAlignment="Left" Height="23" Margin="147,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+            <Label x:Name="EditPageMaterialLabel" Content="Material :" HorizontalAlignment="Left" Margin="57,7,0,0" VerticalAlignment="Top" Width="73" FontSize="16" FontWeight="Bold"/>
+        </Grid>
+        <Button x:Name="SaveChangesButton" Content="Save Changes" HorizontalAlignment="Left" Margin="66,282,0,0" VerticalAlignment="Top" Width="204" RenderTransformOrigin="-0.16,0.65" Height="29" Click="SaveChangesButton_Click"/>
     </Grid>
 </Page>

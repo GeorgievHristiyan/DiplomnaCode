@@ -41,7 +41,7 @@ namespace Code
 
             newFillament.Name = this.NameTextBox.Text;
             newFillament.Color = this.ColorTextBox.Text;
-            newFillament.Length = int.Parse(this.LengthTextBox.Text);
+            newFillament.Length = this.LengthTextBox.Text;
             newFillament.Material = this.MaterialTextBox.Text;
 
             FillamentSingleton.AddFillament(newFillament);

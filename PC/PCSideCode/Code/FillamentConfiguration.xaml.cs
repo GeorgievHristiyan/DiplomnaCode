@@ -24,25 +24,24 @@ namespace Code
         private bool areGetFillamentsAlready = false;
         private Brush DefaultColor { get; set; }
 
-        private bool isNewFillamentAdded = false;
+        private int PrevFillamentsCount { get; set; } = 0;
+
+        private ListBoxItem CurrentEditableListBoxItem { get; set; }
         public FillamentConfiguration()
         {
             InitializeComponent();
         }
 
-
         private void NewFillamentIsAdded()
         {
+            PrevFillamentsCount++;
             this.FillamentsListBox.Items.Add(SetListboxItem(FillamentSingleton.LastAdded()));
         }
 
         private ListBoxItem SetListboxItem(Fillament fillament)
         {
             ListBoxItem currentItem = new ListBoxItem();
-            currentItem.Content = $"{ fillament.Id }. { fillament.Name } ";
-
-            currentItem.MouseEnter += CurrentItem_MouseEnter;
-            currentItem.MouseLeave += CurrentItem_MouseLeave;
+            currentItem.Content = $"{ fillament.Id }. { fillament.Name }";
 
             currentItem.MouseDoubleClick += CurrentItem_MouseDoubleClick;
 
@@ -51,29 +50,12 @@ namespace Code
 
         private void CurrentItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            isNewFillamentAdded = false;
-
-            ListBoxItem currentItem = sender as ListBoxItem;
-            this.NavigationService.Navigate(new EditFillamentPage(currentItem.Name));
-        }
-
-        private void CurrentItem_MouseLeave(object sender, MouseEventArgs e)
-        {
-            ListBoxItem curentItem = sender as ListBoxItem;
-            curentItem.Background = DefaultColor;
-        }
-
-        private void CurrentItem_MouseEnter(object sender, MouseEventArgs e)
-        {
-            ListBoxItem curentItem = sender as ListBoxItem;
-            DefaultColor = curentItem.Background;
-            curentItem.Background = Brushes.Red;
+            CurrentEditableListBoxItem = sender as ListBoxItem;
+            this.NavigationService.Navigate(new EditFillamentPage(CurrentEditableListBoxItem.Content.ToString()));
         }
 
         private void AddFilamentButton_Click(object sender, RoutedEventArgs e)
         {
-            isNewFillamentAdded = true;
-
             this.NavigationService.Navigate(new AddFilamentPage());
         }
       
@@ -91,13 +73,15 @@ namespace Code
                     this.FillamentsListBox.Items.Add(SetListboxItem(fillament));
                 }
                 areGetFillamentsAlready = true;
+                PrevFillamentsCount = FillamentSingleton.FillamentsCount;
             }
-            else
+            else if (PrevFillamentsCount < FillamentSingleton.FillamentsCount)
             {
-                if (isNewFillamentAdded)
-                {
-                    NewFillamentIsAdded();
-                }
+                NewFillamentIsAdded();
+            }
+            else if (FillamentSingleton.IsFillamentChanged)
+            {
+                CurrentEditableListBoxItem.Content = $"{ FillamentSingleton.UpdatedFillament.Id }. { FillamentSingleton.UpdatedFillament.Name }";
             }
         }
     }

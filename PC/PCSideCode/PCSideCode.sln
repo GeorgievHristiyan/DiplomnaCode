@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Code", "Code\Code.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerialCommunicationLibrary", "SerialCommunicationLibrary\SerialCommunicationLibrary.csproj", "{FAED0943-37B4-4394-A16D-192CFCF98342}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExceptionsContainer", "ExceptionsContainer\ExceptionsContainer.csproj", "{18FFA240-3287-438A-B6EE-A9AC03586071}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{FAED0943-37B4-4394-A16D-192CFCF98342}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FAED0943-37B4-4394-A16D-192CFCF98342}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FAED0943-37B4-4394-A16D-192CFCF98342}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18FFA240-3287-438A-B6EE-A9AC03586071}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18FFA240-3287-438A-B6EE-A9AC03586071}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18FFA240-3287-438A-B6EE-A9AC03586071}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18FFA240-3287-438A-B6EE-A9AC03586071}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

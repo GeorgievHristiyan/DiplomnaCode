@@ -1,6 +1,7 @@
 ﻿using SerialCommunication;
 using System;
 using System.Collections.Generic;
+using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -25,46 +26,54 @@ namespace Code
     {
         private Image BusyCicle { get; set; }
 
-        private ArduinoSerialCommunication arduino = new ArduinoSerialCommunication();
+        private ArduinoSerialCommunication arduino;
         private Storyboard BusyCicleStoryBoard { get; set; }
 
-        private List<string>.Enumerator memoryService = new InMemoryDataService().GetBusyCicles().GetEnumerator();
+        private int BusyCicleNumber { get; set; } = 0;
         public PrintingPage()
         {
             InitializeComponent();
-            BusyCicleStoryBoard = ((Storyboard)FindResource("BusyCicleStoryboard"));
-
-            Thread communicationProcess = new Thread(() => StartCommunicationProcess());
-            communicationProcess.Start();
-            ((Storyboard)FindResource("WaitStoryboard")).Begin();
         }
 
-
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            BusyCicleStoryBoard = ((Storyboard)FindResource("BusyCicleStoryboard"));
+            arduino = new ArduinoSerialCommunication();
+            Thread serialCommunicationThread = new Thread(() => StartCommunicationProcess());
+            serialCommunicationThread.Start();
+        }
         private void InitBusyCicle()
         {
-            SetBusyCicle(memoryService.Current);
-            memoryService.MoveNext();
+            SetBusyCicle();
             ShowBusyCicle();
         }
         private void StartCommunicationProcess()
         {
-            InitBusyCicle();
+
+            Dispatcher.Invoke(() =>
+            {
+                InitBusyCicle();
+            });
+
             EnableArduino();
         }
 
         private void EnableArduino()
         {
-            if (arduino.ArduinoPort == null)
+            SerialPort arduinoPort = arduino.GetArduinoPort();
+            if (arduinoPort == null)
             {
                 //Aruino is undefined 
                 throw new Exception();
             }
             else
             {
-                Thread.Sleep(300);
-                HideBusyCicle();
+                Dispatcher.Invoke(() =>
+                {
+                    HideBusyCicle();
+                });
                 //TODO : Change labels!
-                EnablePrinter();
+                //EnablePrinter();
             }
         }
 
@@ -75,14 +84,16 @@ namespace Code
             HideBusyCicle();
         }
 
-        private void SetBusyCicle(string busyCicleName)
+        private void SetBusyCicle()
         {
-            BusyCicle = ((Image)FindResource(busyCicleName));
-            RotateTransform random = new RotateTransform();// AngleProperty
-            random.Angle = 0;
-            random.CenterX = 16;
-            random.CenterX = 15.6;
-            BusyCicle.RenderTransform = random;
+            BusyCicle = (Image)ResourcesGrid.Children[BusyCicleNumber];
+            RotateTransform rotateTransform = new RotateTransform();
+            rotateTransform.Angle = 0;
+            rotateTransform.CenterX = 15;
+            rotateTransform.CenterY = 15;
+            BusyCicle.RenderTransform = rotateTransform;
+
+            BusyCicleNumber++;
         }
 
         private void ShowBusyCicle()

@@ -8,7 +8,7 @@
 
         public string Color { get; set; }
 
-        public int Length { get; set; }
+        public string Length { get; set; }
 
         public string Material { get; set; }
     }

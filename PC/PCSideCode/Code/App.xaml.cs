@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.IO;
 
 namespace Code
 {
@@ -13,5 +14,23 @@ namespace Code
     /// </summary>
     public partial class App : Application
     {
+        private void Application_Exit(object sender, ExitEventArgs e)
+        {
+            try
+            {
+                using (StreamWriter writer = new StreamWriter(ConfigurationManager.AppSettings["FillamentsFilePath"]))
+                {
+                    foreach (var fillament in FillamentSingleton.GetFillaments())
+                    {
+                        writer.WriteLine($"{fillament.Id},{fillament.Name},{fillament.Color},{fillament.Length},{fillament.Material}");
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }

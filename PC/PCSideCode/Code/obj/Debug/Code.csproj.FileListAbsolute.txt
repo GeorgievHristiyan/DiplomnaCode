@@ -1,5 +1,4 @@
 F:\DiplomnaCode\PC\PCSideCode\Code\bin\Debug\Code.exe.config
-F:\DiplomnaCode\PC\PCSideCode\Code\obj\Debug\Code.csprojResolveAssemblyReference.cache
 F:\DiplomnaCode\PC\PCSideCode\Code\obj\Debug\AddFilamentPage.g.cs
 F:\DiplomnaCode\PC\PCSideCode\Code\obj\Debug\EditFillamentPage.g.cs
 F:\DiplomnaCode\PC\PCSideCode\Code\obj\Debug\FillamentConfiguration.g.cs
@@ -22,5 +21,4 @@ F:\DiplomnaCode\PC\PCSideCode\Code\obj\Debug\Code.Properties.Resources.resources
 F:\DiplomnaCode\PC\PCSideCode\Code\obj\Debug\Code.csproj.GenerateResource.Cache
 F:\DiplomnaCode\PC\PCSideCode\Code\obj\Debug\Code.exe
 F:\DiplomnaCode\PC\PCSideCode\Code\obj\Debug\Code.pdb
-F:\DiplomnaCode\PC\PCSideCode\Code\obj\Debug\ResizableWin.g.cs
-F:\DiplomnaCode\PC\PCSideCode\Code\obj\Debug\ResizableWin.baml
+F:\DiplomnaCode\PC\PCSideCode\Code\obj\Debug\Code.csprojResolveAssemblyReference.cache

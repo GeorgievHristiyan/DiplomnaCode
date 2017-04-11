@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -55,9 +56,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ResizableWin.xaml.cs">
-      <DependentUpon>ResizableWin.xaml</DependentUpon>
-    </Compile>
     <Page Include="AddFilamentPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -96,13 +94,8 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ResizableWin.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="InMemoryDataService.cs" />
     <Compile Include="PrintingPage.xaml.cs">
       <DependentUpon>PrintingPage.xaml</DependentUpon>
     </Compile>
@@ -136,6 +129,10 @@
     <Resource Include="Fonts\BusyCircle.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ExceptionsContainer\ExceptionsContainer.csproj">
+      <Project>{18ffa240-3287-438a-b6ee-a9ac03586071}</Project>
+      <Name>ExceptionsContainer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SerialCommunicationLibrary\SerialCommunicationLibrary.csproj">
       <Project>{faed0943-37b4-4394-a16d-192cfcf98342}</Project>
       <Name>SerialCommunicationLibrary</Name>

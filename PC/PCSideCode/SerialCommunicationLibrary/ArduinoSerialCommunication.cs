@@ -1,34 +1,37 @@
-﻿using System;
+﻿using SerialCommunicationLibrary;
+using System;
 using System.Collections.Generic;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace SerialCommunication
 {
-    public class ArduinoSerialCommunication
+    public class ArduinoSerialCommunication : SerialComunication
     {
 
         private bool isarduinofinded = false;
-        
-        public ArduinoSerialCommunication() {
 
-            ArduinoPort = GetArduinoPort();
-
-        }    
+        public ArduinoSerialCommunication() { }
         
-        public SerialPort ArduinoPort { get; set; }
+        private SerialPort ArduinoPort { get; set; }
 
         public string Receive()
         {
             try
             {
                 return ArduinoPort.ReadLine();
-            }catch (Exception)
+            }
+            catch (Exception)
             {
                 //
                 throw;
+            }
+            finally
+            {
+                ArduinoPort.Close();
             }
         }
 
@@ -36,7 +39,15 @@ namespace SerialCommunication
         {
             try
             {
-                ArduinoPort.WriteLine(message);
+                if (ArduinoPort.IsOpen)
+                {
+                    ArduinoPort.Write(message);
+                }
+                else
+                {
+                    ArduinoPort.Open();
+                    ArduinoPort.Write(message);
+                }
             }
             catch (Exception)
             {
@@ -44,52 +55,47 @@ namespace SerialCommunication
                 throw;
             }
         }
-        private SerialPort GetArduinoPort()
+        public SerialPort GetArduinoPort()
         {
             string[] portsname = SerialPort.GetPortNames();
-            SerialPort arduinoport = new SerialPort();
+
             //TODO: 3D Printer connection
             try
             {
                 foreach (var portname in portsname)
                 {
-
                     ArduinoPort = new SerialPort(portname, 9600);
+                   
                     if (ArduinoPort.IsOpen)
                     {
                         continue;
                     }
                     else
                     {
-                        using (ArduinoPort)
+                        ArduinoPort.Open();
+
+                        Send("Hello From Pc");// HandshakeCommands.HelloFromPC.ToString());
+                        Thread.Sleep(3000);
+                        ChekForArduino();
+
+                        if (isarduinofinded)
                         {
-                            ArduinoPort.Open();
-
-                            ArduinoPort.DataReceived += ArduinoPort_DataReceived1;
-
-                            Send(HandshakeCommands.HelloFromPC.ToString());
-
-                            if (isarduinofinded)
-                            {
-                                return ArduinoPort;
-                            }
+                            return ArduinoPort;
                         }
                     }
                 }
-                //
-                throw new Exception();
+                return null;
             }
-            //
             catch (Exception)
             {
                 throw;
             }
         }
 
-        private void ArduinoPort_DataReceived1(object sender, SerialDataReceivedEventArgs e)
+        private void ChekForArduino()
         {
-            SerialPort arduinoPin = (SerialPort)sender;
-            if (Receive().Equals("Hello From Arduino"))
+            string arduinoMessage = Receive();
+            if (arduinoMessage.Equals("Hello From Arduino\r"))
             {
                 isarduinofinded = true;
             }
