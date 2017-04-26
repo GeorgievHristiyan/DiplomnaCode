@@ -1,9 +1,0 @@
-C:\Users\Lubo\Desktop\DiplomnaCode\PC\PCSideCode\SerialCommunicationLibrary\bin\Debug\SerialCommunicationLibrary.dll
-C:\Users\Lubo\Desktop\DiplomnaCode\PC\PCSideCode\SerialCommunicationLibrary\bin\Debug\SerialCommunicationLibrary.pdb
-C:\Users\Lubo\Desktop\DiplomnaCode\PC\PCSideCode\SerialCommunicationLibrary\obj\Debug\SerialCommunicationLibrary.dll
-C:\Users\Lubo\Desktop\DiplomnaCode\PC\PCSideCode\SerialCommunicationLibrary\obj\Debug\SerialCommunicationLibrary.pdb
-F:\DiplomnaCode\PC\PCSideCode\SerialCommunicationLibrary\bin\Debug\SerialCommunicationLibrary.dll
-F:\DiplomnaCode\PC\PCSideCode\SerialCommunicationLibrary\bin\Debug\SerialCommunicationLibrary.pdb
-F:\DiplomnaCode\PC\PCSideCode\SerialCommunicationLibrary\obj\Debug\SerialCommunicationLibrary.dll
-F:\DiplomnaCode\PC\PCSideCode\SerialCommunicationLibrary\obj\Debug\SerialCommunicationLibrary.pdb
-F:\DiplomnaCode\PC\PCSideCode\SerialCommunicationLibrary\obj\Debug\SerialCommunicationLibrary.csprojResolveAssemblyReference.cache
