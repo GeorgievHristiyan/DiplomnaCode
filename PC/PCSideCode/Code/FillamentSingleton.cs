@@ -26,7 +26,7 @@ namespace Code
         {
             try
             {
-                return GetFillaments().Where((f) => f.Id == id).First();
+                return fillaments.Where((fillament) => fillament.Id == id).First();
             }
             catch (Exception)
             {
@@ -63,7 +63,7 @@ namespace Code
                         string line = string.Empty;
                         while ((line = reader.ReadLine()) != null)
                         {
-                            CreateNewFillament(line);
+                            BuildExistingFillament(line);
                         }
                       
                     }
@@ -77,7 +77,7 @@ namespace Code
             }
             catch (Exception)
             {
-                //Move it something else
+                //Move it somewhere else
                 using (StreamWriter writer = new StreamWriter(ConfigurationManager.AppSettings["FillamentsFilePath"]))
                 {
                     writer.Write("");
@@ -88,7 +88,7 @@ namespace Code
 
         private static string[] FillamentFields { get; set; }
 
-        private static void CreateNewFillament(string fillament)
+        private static void BuildExistingFillament(string fillament)
         {
             Fillament newFillament = new Fillament();
 

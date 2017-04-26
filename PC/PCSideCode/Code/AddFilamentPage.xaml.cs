@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExceptionsContainer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,6 @@ namespace Code
     /// </summary>
     public partial class AddFilamentPage : Page
     {
-        private FillamentConfiguration FillamentConfigPage { get; set; }
         public AddFilamentPage()
         {
             InitializeComponent();
@@ -28,25 +28,32 @@ namespace Code
 
         private void AddFilamentButton_Click(object sender, RoutedEventArgs e)
         {
-            Fillament newFillament = new Fillament();
-            Fillament lastAddedFillament = FillamentSingleton.LastAdded();
-
-            if (lastAddedFillament != null)
+            if (FillamentSingleton.FillamentsCount == 4)
             {
-                newFillament.Id = lastAddedFillament.Id + 1;
+                System.Windows.MessageBox.Show("The maximum of 4 fillaments is reached.");
             }else
             {
-                newFillament.Id = 1;
+                Fillament newFillament = new Fillament();
+                Fillament lastAddedFillament = FillamentSingleton.LastAdded();
+
+                if (lastAddedFillament != null)
+                {
+                    newFillament.Id = lastAddedFillament.Id + 1;
+                }
+                else
+                {
+                    newFillament.Id = 1;
+                }
+
+                newFillament.Name = this.NameTextBox.Text;
+                newFillament.Color = this.ColorTextBox.Text;
+                newFillament.Length = this.LengthTextBox.Text;
+                newFillament.Material = this.MaterialTextBox.Text;
+
+                FillamentSingleton.AddFillament(newFillament);
+
+                this.NavigationService.GoBack();
             }
-
-            newFillament.Name = this.NameTextBox.Text;
-            newFillament.Color = this.ColorTextBox.Text;
-            newFillament.Length = this.LengthTextBox.Text;
-            newFillament.Material = this.MaterialTextBox.Text;
-
-            FillamentSingleton.AddFillament(newFillament);
-
-            this.NavigationService.GoBack();
         }
     }
 }

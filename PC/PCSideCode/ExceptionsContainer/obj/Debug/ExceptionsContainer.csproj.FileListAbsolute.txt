@@ -1,0 +1,5 @@
+F:\DiplomnaCode\PC\PCSideCode\ExceptionsContainer\obj\Debug\ExceptionsContainer.csprojResolveAssemblyReference.cache
+F:\DiplomnaCode\PC\PCSideCode\ExceptionsContainer\bin\Debug\ExceptionsContainer.dll
+F:\DiplomnaCode\PC\PCSideCode\ExceptionsContainer\bin\Debug\ExceptionsContainer.pdb
+F:\DiplomnaCode\PC\PCSideCode\ExceptionsContainer\obj\Debug\ExceptionsContainer.dll
+F:\DiplomnaCode\PC\PCSideCode\ExceptionsContainer\obj\Debug\ExceptionsContainer.pdb

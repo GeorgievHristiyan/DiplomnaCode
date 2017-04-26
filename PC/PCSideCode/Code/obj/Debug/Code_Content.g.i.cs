@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("fonts/busycircle.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("fonts/tick.png")]
 
 

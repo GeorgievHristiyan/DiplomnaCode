@@ -30,6 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArduinoSerialCommunication.cs" />
-    <Compile Include="HandshakeCommands.cs" />
+    <Compile Include="PrinterSerialCommunication.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SerialComunication.cs" />
   </ItemGroup>

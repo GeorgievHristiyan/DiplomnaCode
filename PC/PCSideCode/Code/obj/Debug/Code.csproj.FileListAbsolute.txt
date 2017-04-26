@@ -22,3 +22,5 @@ F:\DiplomnaCode\PC\PCSideCode\Code\obj\Debug\Code.csproj.GenerateResource.Cache
 F:\DiplomnaCode\PC\PCSideCode\Code\obj\Debug\Code.exe
 F:\DiplomnaCode\PC\PCSideCode\Code\obj\Debug\Code.pdb
 F:\DiplomnaCode\PC\PCSideCode\Code\obj\Debug\Code.csprojResolveAssemblyReference.cache
+F:\DiplomnaCode\PC\PCSideCode\Code\bin\Debug\ExceptionsContainer.dll
+F:\DiplomnaCode\PC\PCSideCode\Code\bin\Debug\ExceptionsContainer.pdb

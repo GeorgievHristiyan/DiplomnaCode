@@ -28,7 +28,6 @@ namespace Code
             }
             catch (Exception)
             {
-
                 throw;
             }
         }

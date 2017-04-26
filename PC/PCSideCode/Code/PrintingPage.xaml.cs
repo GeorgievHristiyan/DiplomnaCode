@@ -1,6 +1,7 @@
 ﻿using SerialCommunication;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
@@ -26,10 +27,16 @@ namespace Code
     {
         private Image BusyCicle { get; set; }
 
+        private Image Tick { get; set; }
         private ArduinoSerialCommunication arduino;
-        private Storyboard BusyCicleStoryBoard { get; set; }
+        private Storyboard BusyCiclesStoryBoard { get; set; }
+
+        private Task SerialCommunicationTask { get; set; }
+        private CancellationTokenSource TokenSource { get; set; }
+        private CancellationToken Token { get; set; }
 
         private int BusyCicleNumber { get; set; } = 0;
+
         public PrintingPage()
         {
             InitializeComponent();
@@ -37,39 +44,54 @@ namespace Code
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            BusyCicleStoryBoard = ((Storyboard)FindResource("BusyCicleStoryboard"));
-            arduino = new ArduinoSerialCommunication();
-            Thread serialCommunicationThread = new Thread(() => StartCommunicationProcess());
-            serialCommunicationThread.Start();
+            BusyCiclesStoryBoard = ((Storyboard)FindResource("BusyCicleStoryboard"));
+            arduino = new ArduinoSerialCommunication("0");
+
+            SetComunicationProcess(() => ConnectToArduino());
+        }
+
+        private void SetComunicationProcess(Action task)
+        {
+            TokenSource = new CancellationTokenSource();
+            Token = TokenSource.Token;
+            SerialCommunicationTask = new Task(task, Token);
+
+            SerialCommunicationTask.Start();
         }
         private void InitBusyCicle()
         {
             SetBusyCicle();
             ShowBusyCicle();
         }
-        private void StartCommunicationProcess()
-        {
 
+        private void ConnectToArduino()
+        {
             Dispatcher.Invoke(() =>
             {
+                ConnectAgainToArduino.IsEnabled = false;
                 InitBusyCicle();
             });
 
-            EnableArduino();
-        }
+            SerialPort arduinoPort = arduino.GetArduinoPort("Hello From Arduino", 9600);
 
-        private void EnableArduino()
-        {
-            SerialPort arduinoPort = arduino.GetArduinoPort();
             if (arduinoPort == null)
             {
-                //Aruino is undefined 
-                throw new Exception();
+                TokenSource.Cancel();
+
+                System.Windows.MessageBox.Show("Arduino is undefined");
+
+                Dispatcher.Invoke(() =>
+                {
+                    BusyCiclesStoryBoard.Stop(BusyCicle);
+                    ConnectAgainToArduino.IsEnabled = true;
+                });
             }
             else
             {
                 Dispatcher.Invoke(() =>
                 {
+                    AutoCompleteFillamentTextBox.IsEnabled = true;
+                    StartButton.IsEnabled = true;
                     HideBusyCicle();
                 });
                 //TODO : Change labels!
@@ -77,41 +99,115 @@ namespace Code
             }
         }
 
-        private void EnablePrinter()
+        private void ConnectToPrinter()
         {
             InitBusyCicle();
             Thread.Sleep(300);
             HideBusyCicle();
         }
 
+
+        private void SetCurrentBusyCicleTick()
+        {
+            Tick = (Image)TickGrid.Children[BusyCicleNumber];
+        }
         private void SetBusyCicle()
         {
-            BusyCicle = (Image)ResourcesGrid.Children[BusyCicleNumber];
+            BusyCicle = (Image)BusyCicleGrid.Children[BusyCicleNumber];
             RotateTransform rotateTransform = new RotateTransform();
             rotateTransform.Angle = 0;
             rotateTransform.CenterX = 15;
             rotateTransform.CenterY = 15;
             BusyCicle.RenderTransform = rotateTransform;
 
-            BusyCicleNumber++;
+            SetCurrentBusyCicleTick();
         }
 
         private void ShowBusyCicle()
         {
-            BusyCicleStoryBoard.Begin(BusyCicle);
+            BusyCiclesStoryBoard.Begin(BusyCicle, true);
         }
 
         private void HideBusyCicle()
         {
-            BusyCicleStoryBoard.Stop();
+            BusyCiclesStoryBoard.Stop(BusyCicle);
             BusyCicle.Visibility = Visibility.Hidden;
-            
+            Tick.Visibility = Visibility.Visible;
+
+            BusyCicleNumber++;
         }
 
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            InitBusyCicle();
-            arduino.Send($"{ HandshakeCommands.ColorIsSelected.ToString() }-{ textBox.Text }");
+            if (AutoCompleteFillamentTextBox.Background == Brushes.OrangeRed)
+            {
+                MessageBox.Show("You have to enter a valid fillament");
+            }else
+            {
+                arduino.ArduinoDataSend($"{ AutoCompleteFillamentTextBox.Text[0] }");
+            }
+        }
+
+        private void AutoCompleteFillamentTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string autoCompletedtext = (sender as TextBox).Text;
+
+            resultStack.Children.Clear();
+            
+
+            foreach (Fillament fillament in FillamentSingleton.GetFillaments())
+            {
+                if (fillament.Name.ToLower().Contains(autoCompletedtext.ToLower()))
+                {
+                    if (autoCompletedtext == string.Empty)
+                    {
+                        AutoCompleteFillamentTextBox.Background = Brushes.OrangeRed;
+                        AutoCompleteBorder.Visibility = Visibility.Collapsed;
+                    }
+                    else
+                    {
+                        AutoCompleteBorder.Visibility = Visibility.Visible;
+                    }
+                    ShowAutoCompleteSuggestions($"{fillament.Id}. {fillament.Name}");
+                }
+            }
+            if (resultStack.Children.Count == 0)
+            {
+                AutoCompleteFillamentTextBox.Background = Brushes.OrangeRed;
+                AutoCompleteBorder.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void ShowAutoCompleteSuggestions(string fillamentName)
+        {
+            TextBlock autoCompletedFillamentItem = new TextBlock();
+
+            autoCompletedFillamentItem.Text = fillamentName;
+
+            autoCompletedFillamentItem.MouseLeftButtonDown += (sender, e) =>
+            {
+                AutoCompleteFillamentTextBox.Text = (sender as TextBlock).Text;
+                AutoCompleteFillamentTextBox.Background = Brushes.LightGreen;
+
+                AutoCompleteBorder.Visibility = Visibility.Collapsed;
+            };
+
+            autoCompletedFillamentItem.MouseEnter += (sender, e) =>
+            {
+                autoCompletedFillamentItem.Background = Brushes.Aqua;
+            };
+
+            autoCompletedFillamentItem.MouseLeave += (sender, e) =>
+            {
+                autoCompletedFillamentItem.Background = Brushes.White;
+            };
+
+            resultStack.Children.Add(autoCompletedFillamentItem);
+        }
+
+        private void ConnectAgainToArduino_Click(object sender, RoutedEventArgs e)
+        {
+            SetComunicationProcess(() => ConnectToArduino());
         }
     }
 }
