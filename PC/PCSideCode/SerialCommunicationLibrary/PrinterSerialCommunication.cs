@@ -18,6 +18,11 @@ namespace SerialCommunicationLibrary
             return base.GetDevice(printerAnswerMessage);
         }
 
+        public SerialPort GetPrinterPort(string printerAnswerMessage, int baudRate)
+        {
+            return base.GetDevice(printerAnswerMessage, baudRate);
+        }
+
         public string PrinterDataReceive()
         {
             return base.Receive();

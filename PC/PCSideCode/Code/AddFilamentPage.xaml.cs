@@ -28,11 +28,6 @@ namespace Code
 
         private void AddFilamentButton_Click(object sender, RoutedEventArgs e)
         {
-            if (FillamentSingleton.FillamentsCount == 4)
-            {
-                System.Windows.MessageBox.Show("The maximum of 4 fillaments is reached.");
-            }else
-            {
                 Fillament newFillament = new Fillament();
                 Fillament lastAddedFillament = FillamentSingleton.LastAdded();
 
@@ -53,7 +48,6 @@ namespace Code
                 FillamentSingleton.AddFillament(newFillament);
 
                 this.NavigationService.GoBack();
-            }
         }
     }
 }

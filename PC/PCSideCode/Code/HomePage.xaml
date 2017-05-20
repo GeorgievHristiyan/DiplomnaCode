@@ -8,10 +8,10 @@
       d:DesignHeight="300" d:DesignWidth="300"
       Title="HomePage">
 
-    <Grid>
+    <Grid Name="HomeGrid" VerticalAlignment="Center" HorizontalAlignment="Center">
         <Button x:Name="SettingsButton" Content="Settings" HorizontalAlignment="Left" Margin="37,134,0,0" VerticalAlignment="Top" Width="97" Height="31" BorderThickness="1,1,2,1" Click="SettingsButton_Click"/>
         <Button x:Name="StartPrintingButton" Content="Start printing" HorizontalAlignment="Left" Margin="180,134,0,0" VerticalAlignment="Top" Width="97" Height="31" BorderThickness="1,1,2,1" Click="StartPrintingButton_Click"/>
-        <Label x:Name="label" Content="Welcome to 3D automation" HorizontalAlignment="Left" Margin="49,58,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+        <Label x:Name="label" Content="Welcome to Zeta - 3D automation" HorizontalAlignment="Left" Margin="26,59,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
 
     </Grid>
 </Page>

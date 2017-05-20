@@ -16,7 +16,7 @@ namespace Code
     {
         private void Application_Exit(object sender, ExitEventArgs e)
         {
-            try
+            if (FillamentSingleton.FillamentsCount != 0)
             {
                 using (StreamWriter writer = new StreamWriter(ConfigurationManager.AppSettings["FillamentsFilePath"]))
                 {
@@ -25,10 +25,6 @@ namespace Code
                         writer.WriteLine($"{fillament.Id},{fillament.Name},{fillament.Color},{fillament.Length},{fillament.Material}");
                     }
                 }
-            }
-            catch (Exception)
-            {
-                throw;
             }
         }
     }

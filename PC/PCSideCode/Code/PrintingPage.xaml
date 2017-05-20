@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Code"
       mc:Ignorable="d"
-      Title="PrintingPage" Loaded="Page_Loaded" Height="363.6" Width="313.2">
+      Title="PrintingPage" Height="426" Width="313.2" Loaded="Page_Loaded">
 
 
     <Page.Resources>
@@ -20,42 +20,73 @@
     </Page.Resources>
 
     <Grid x:Name="ParentGrid">
-        <Grid x:Name="BusyCicleGrid" HorizontalAlignment="Center" VerticalAlignment="Center" Height="300" Width="300">
+        <Grid x:Name="BusyCicleGrid" HorizontalAlignment="Center" VerticalAlignment="Center" Height="353" Width="300" Margin="7,63,6.6,9.6">
 
-            <Image x:Name="EstablishingDeviceBusyCicle" Source="Fonts/BusyCircle.png" Margin="254,4,16,266" Width="30" Height="30"/>
-            <Image x:Name="EstablishingPrinterCicle" Source="Fonts/BusyCircle.png" Margin="254,38,15,224" Width="30" Height="30"/>
-            <Image x:Name="PullInLabelBusyCicle" Source="Fonts/BusyCircle.png" Margin="194,162,75,100"/>
-            <Image x:Name="PrepareCicle" Source="Fonts/BusyCircle.png" Margin="194,213,75,49"/>
-            <Image x:Name="PrintingBusyCicle" Source="Fonts/BusyCircle.png" Margin="194,262,75,0"/>
+            <Image x:Name="EstablishingDeviceBusyCicle" Source="Fonts/BusyCircle.png" Margin="254,0,16,323" Width="30" Height="30"/>
+            <Image x:Name="EstablishingPrinterCicle" Source="Fonts/BusyCircle.png" Margin="254,44,16,279" Width="30" Height="30"/>
+            <Image x:Name="PullInLabelBusyCicle" Source="Fonts/BusyCircle.png" Margin="206,139,63,123"/>
+            <Image x:Name="PrepareCicle" Source="Fonts/BusyCircle.png" Margin="206,189,63,73" />
+            <Image x:Name="PrintingBusyCicle" Source="Fonts/BusyCircle.png" Margin="206,235,63,27"/>
+            <Image x:Name="PullOutLabelBusyCicle" Source="Fonts/BusyCircle.png" Margin="206,285,63,-23"/>
         </Grid>
 
-        <Grid x:Name="TickGrid" HorizontalAlignment="Center" VerticalAlignment="Center" Height="300" Width="300">
-            <Image Source="Fonts/Tick.png" Margin="254,4,16,266" Width="30" Height="30" Visibility="Hidden"/>
-            <Image Source="Fonts/Tick.png" Margin="254,38,15,224" Width="30" Height="30" Visibility="Hidden"/>
-            <Image Source="Fonts/Tick.png" Margin="194,162,75,100" Width="30" Height="30" Visibility="Hidden"/>
-            <Image Source="Fonts/Tick.png" Margin="194,213,75,49" Width="30" Height="30" Visibility="Hidden"/>
-            <Image Source="Fonts/Tick.png" Margin="194,262,75,0" Width="30" Height="30" Visibility="Hidden"/>
+        <Grid x:Name="TickGrid" HorizontalAlignment="Center" VerticalAlignment="Center" Height="363" Width="300" Margin="7,63,6.6,-0.4">
+            <Image Source="Fonts/Tick.png" Margin="254,0,16,333" Width="30" Height="30" Visibility="Hidden"/>
+            <Image Source="Fonts/Tick.png" Margin="254,44,16,289" Width="30" Height="30" Visibility="Hidden"/>
+            <Image Source="Fonts/Tick.png" Margin="206,170,64,163" Width="30" Height="30" Visibility="Hidden"/>
+            <Image Source="Fonts/Tick.png" Margin="206,218,64,115" Width="30" Height="30" Visibility="Hidden"/>
+            <Image Source="Fonts/Tick.png" Margin="206,266,64,67" Width="30" Height="30" Visibility="Hidden"/>
+            <Image Source="Fonts/Tick.png" Margin="206,315,64,18" Width="30" Height="30" Visibility="Hidden"/>
         </Grid>
 
-        <Grid x:Name="OtherGrid" HorizontalAlignment="Center" VerticalAlignment="Center" Height="300" Width="300">
+        <Grid x:Name="OtherGrid" HorizontalAlignment="Center" VerticalAlignment="Center" Height="353" Width="300" Margin="7,63,6.6,9.6">
             <Label x:Name="SelectColorLabel" Content="Select fillament: " HorizontalAlignment="Left" Margin="0,85,0,0" VerticalAlignment="Top" Width="134" FontSize="16" FontWeight="Bold"/>
             <Label x:Name="PullInLabel" Content="Pulling in the material : " HorizontalAlignment="Left" Margin="0,168,0,0" VerticalAlignment="Top" Width="189" FontSize="16" FontWeight="Bold"/>
-            <Label x:Name="PrepareLabel" Content="Preparing for printing : " HorizontalAlignment="Left" Margin="0,219,0,0" VerticalAlignment="Top" Width="189" FontSize="16" FontWeight="Bold"/>
-            <Label x:Name="Printing" Content="Printing : " HorizontalAlignment="Left" Margin="0,269,0,0" VerticalAlignment="Top" Width="172" FontSize="16" FontWeight="Bold"/>
+            <Label x:Name="PrepareLabel" Content="Cooling Temperature :" HorizontalAlignment="Left" Margin="0,265,0,0" VerticalAlignment="Top" Width="189" FontSize="16" FontWeight="Bold"/>
+            <Label x:Name="Printing" Content="Printing : " HorizontalAlignment="Left" Margin="0,220,0,0" VerticalAlignment="Top" Width="172" FontSize="16" FontWeight="Bold"/>
             <Label x:Name="EstablishingPrinterLabel" Content="Establishing printer connection : " HorizontalAlignment="Left" Margin="0,43,0,0" VerticalAlignment="Top" Width="254" FontSize="16" FontWeight="Bold"/>
             <Label x:Name="EstablishingDeviceLabel" Content="Establishing device connection :  " HorizontalAlignment="Left" VerticalAlignment="Top" Width="254" Height="38" FontWeight="Bold" FontSize="16"/>
+            <Label x:Name="label" Content="Pulling out the material :" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,318,0,0" FontWeight="Bold" FontSize="16"/>
+
+
 
             <TextBox x:Name="AutoCompleteFillamentTextBox" HorizontalAlignment="Left" Background="OrangeRed" Height="22" Margin="134,93,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="AutoCompleteFillamentTextBox_TextChanged" IsEnabled="False"/>
             <Border x:Name="AutoCompleteBorder" BorderBrush="Black"   
-                BorderThickness="1" Margin="134,114,46,138" Visibility="Collapsed">
-                <ScrollViewer x:Name="AutoCompletedStackPanel" VerticalScrollBarVisibility="Auto">
+                BorderThickness="1" Margin="134,114,46,185" Visibility="Collapsed">
+                <ScrollViewer x:Name="AutoCompletedStackPanel" VerticalScrollBarVisibility="Auto" Margin="0.2,0.2,0.2,46">
                     <StackPanel Name="resultStack"></StackPanel>
                 </ScrollViewer>
             </Border>
-            <Button x:Name="StartButton" Content="Start" HorizontalAlignment="Left" Margin="27,131,0,0" VerticalAlignment="Top" Width="75" Click="StartButton_Click" IsEnabled="False"/>
-        </Grid>
-        <Button x:Name="ConnectAgainToArduino" Content="Conect to arduino" HorizontalAlignment="Left" VerticalAlignment="Top" Width="108" IsEnabled="False" Click="ConnectAgainToArduino_Click"/>
-        <Button x:Name="ConnectTo3DPrinterAgain" Content="Conect to 3D Printer" HorizontalAlignment="Left" Margin="108,0,0,0" VerticalAlignment="Top" Width="114" IsEnabled="False"/>
-    </Grid>
 
+            <Button x:Name="StartButton" Content="Start" HorizontalAlignment="Left" Margin="10,147,0,0" VerticalAlignment="Top" Width="113" Click="StartButton_Click" IsEnabled="False"/>
+            <Button x:Name="BrowseGCodeButton" Content="Browse GCode" HorizontalAlignment="Left" Margin="10,122,0,0" VerticalAlignment="Top" Width="113" RenderTransformOrigin="2.619,1.583" Click="BrowseGCodeButton_Click" IsEnabled="False"/>
+        </Grid>
+        <Button x:Name="ConnectAgainToArduino" Content="Conect to arduino" HorizontalAlignment="Left" VerticalAlignment="Top" Width="108" Click="ConnectAgainToArduino_Click" Height="34"/>
+        <Button x:Name="ConnectTo3DPrinterAgain" Content="Conect to 3D Printer" HorizontalAlignment="Left" Margin="108,0,0,0" VerticalAlignment="Top" Width="114" Click="ConnectTo3DPrinterAgain_Click" Height="34"/>
+
+        <Button x:Name="BaudRateButton"
+                Content="BaudRate"
+                HorizontalAlignment="Left"
+                Margin="222,0,0,0"
+                VerticalAlignment="Top"
+                Width="75"
+                ContextMenuService.IsEnabled="False" Click="BaudRateButton_Click" Height="34">
+            <Button.ContextMenu>
+                <ContextMenu>
+                    <MenuItem x:Name="PrinterMenuItem" Header="Printer" MouseLeave="PrinterMenuItem_MouseLeave" MouseLeftButtonDown="PrinterMenuItem_MouseLeftButtonDown">
+                        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="27" Width="302"  RenderTransformOrigin="-0.292,1.441">
+                            <TextBox x:Name="PrinterRateTextBox" HorizontalAlignment="Left" Height="22" Margin="148,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154" FontSize="15"  MaxLength="6" KeyDown="PrinterRateTextBox_KeyDown"/>
+                            <Label x:Name="PrinterRateLabel" Content="Printer Baud Rate" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" FontSize="15" Width="130" Margin="0,0,0,-13"/>
+                        </Grid>
+                    </MenuItem>
+                    <MenuItem x:Name="ZetaMenuItem" Header="Zeta" MouseLeave="ZetaMenuItem_MouseLeave" MouseLeftButtonDown="ZetaMenuItem_MouseLeftButtonDown" >
+                        <Grid x:Name="ZetaRate" HorizontalAlignment="Center" VerticalAlignment="Center" Height="27" Width="302"  RenderTransformOrigin="-0.292,1.441">
+                            <TextBox x:Name="ZetaRateTextBox" HorizontalAlignment="Left" Height="22" Margin="148,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154" FontSize="15"  KeyDown="ZetaRateTextBox_KeyDown" MaxLength="6"/>
+                            <Label x:Name="ZetaRateLabel" Content="Zeta Baud Rate" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" FontSize="15" Width="130" Margin="0,0,0,-13"/>
+                        </Grid>
+                    </MenuItem>
+                </ContextMenu>
+            </Button.ContextMenu>
+        </Button>
+    </Grid>
 </Page>

@@ -8,9 +8,9 @@
       d:DesignHeight="300" d:DesignWidth="300"
       Title="AddFilamentPage">
 
-    <Grid>
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
         <Label x:Name="AddPageNameLabel" Content="Name : " HorizontalAlignment="Left" Margin="23,21,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Width="82" Height="49"/>
-        <TextBox x:Name="NameTextBox" HorizontalAlignment="Left" Height="29" Margin="128,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="146"/>
+        <TextBox x:Name="NameTextBox" HorizontalAlignment="Left" Height="29" Margin="128,21,-0.4,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="146"/>
         <Button x:Name="AddFilamentButton" Content="Add" HorizontalAlignment="Left" Margin="62,248,0,0" VerticalAlignment="Top" Width="173" Click="AddFilamentButton_Click" Height="29"/>
         <Label x:Name="AddPageColorLabel" Content="Color :" HorizontalAlignment="Left" Margin="21,73,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" FontSize="16" FontWeight="Bold" Width="72" Height="48">
             <Label.RenderTransform>
@@ -24,9 +24,9 @@
         </Label>
         <Label x:Name="AddPageLengthLabel" Content="Length :" HorizontalAlignment="Left" Margin="23,120,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Width="86" Height="47"/>
         <Label x:Name="AddPageMaterialLabel" Content="Material :" HorizontalAlignment="Left" Margin="23,167,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Width="100" Height="48"/>
-        <TextBox x:Name="ColorTextBox" HorizontalAlignment="Left" Height="26" Margin="128,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="146"/>
-        <TextBox x:Name="LengthTextBox" HorizontalAlignment="Left" Height="25" Margin="128,133,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="146" RenderTransformOrigin="1.214,-0.896"/>
-        <TextBox x:Name="MaterialTextBox" HorizontalAlignment="Left" Height="26" Margin="128,179,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="146"/>
+        <TextBox x:Name="ColorTextBox" HorizontalAlignment="Left" Height="26" Margin="128,74,-0.4,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="146"/>
+        <TextBox x:Name="LengthTextBox" HorizontalAlignment="Left" Height="25" Margin="128,127,-0.4,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="146" RenderTransformOrigin="1.214,-0.896"/>
+        <TextBox x:Name="MaterialTextBox" HorizontalAlignment="Left" Height="26" Margin="128,174,-0.4,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="146"/>
 
     </Grid>
 </Page>

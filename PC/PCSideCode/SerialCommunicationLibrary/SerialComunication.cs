@@ -5,13 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 
 namespace SerialCommunicationLibrary
 {
     public abstract class SerialComunication
     {
-        private List<int> mostUsedBaudRates = new List<int>() { 300, 600, 1200, 2400, 4800, 9600, 14400, 19200, 28800, 38400, 57600, 115200, 250000 };
+        private List<int> mostUsedBaudRates = SerialCommunicationBaudRatesConfiguration.BaudRates;
         public SerialComunication(string deviceMessage)
         {
             DeviceMessage = deviceMessage;
@@ -23,16 +24,14 @@ namespace SerialCommunicationLibrary
 
         private AutoResetEvent DataRecievied { get; set; }
 
-        public SerialPort GetDevice(string answerMessage)
+        protected SerialPort GetDevice(string answerMessage)
         {
             string[] portsname = SerialPort.GetPortNames();
 
             foreach (var portname in portsname)
             {
-                MessageBox.Show("Port");
                 foreach (var baudrate in mostUsedBaudRates)
                 {
-                    MessageBox.Show("Baud");
                     SetDevicePort(portname, baudrate);
 
                     if (IsDeviceFound(answerMessage))
@@ -49,31 +48,48 @@ namespace SerialCommunicationLibrary
         {
             Device = new SerialPort(portName, baudRate);
             DataRecievied = new AutoResetEvent(false);
-            Device.DataReceived += Device_DataReceived;
+            Device.DtrEnable = true;
         }
 
         private bool IsDeviceFound(string answerMessage)
         {
-            if (!Device.IsOpen)
+            try
             {
-                Device.Open();
-
-                Send(DeviceMessage);
-
-                DataRecievied.WaitOne(2000);
-
-                if (ChekForDevice(answerMessage))
+                if (!Device.IsOpen)
                 {
-                    return true;
+                    Device.Open();
+
+                    DataRecievied.WaitOne(2000);
+
+                    RecievedData = Device.ReadExisting();
+
+                    if (RecievedData.Equals(string.Empty))
+                    {
+                        DataRecievied.WaitOne(2000);
+
+                        Send(DeviceMessage);
+
+                        RecievedData = Device.ReadLine();
+                    }
+
+                    if (ChekForDevice(answerMessage))
+                    {
+                        return true;
+                    }
+
+                    Device.Close();
+
+                    return false;
                 }
-
-                Device.Close();
-
                 return false;
             }
-            return false;
+            catch (Exception)
+            {
+                return false;
+            }
         }
-        public SerialPort GetDevice(string answerMessage, int baudRate)
+
+        protected SerialPort GetDevice(string answerMessage, int baudRate)
         {
             string[] portsname = SerialPort.GetPortNames();
 
@@ -90,17 +106,15 @@ namespace SerialCommunicationLibrary
             return null;
         }
 
-        private void Device_DataReceived(object sender, SerialDataReceivedEventArgs e)
-        {
-            MessageBox.Show("Here");
-            RecievedData = ((SerialPort)sender).ReadLine();
-        }
-
         private bool ChekForDevice(string checkMessage)
         {
-            return RecievedData.Equals(checkMessage + "\r");
+            if (RecievedData.Contains(checkMessage))
+            {
+                return true;
+            }
+            return false;
         }
-        public string Receive()
+        protected string Receive()
         {
             try
             {
@@ -117,18 +131,18 @@ namespace SerialCommunicationLibrary
             }
         }
 
-        public  void Send(string message)
+        protected  void Send(string message)
         {
             try
             {
                 if (Device.IsOpen)
                 {
-                    Device.Write(message);
+                    Device.WriteLine(message);
                 }
                 else
                 {
                     Device.Open();
-                    Device.Write(message);
+                    Device.WriteLine(message);
                 }
             }
             catch (Exception)

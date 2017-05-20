@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -56,7 +57,13 @@ namespace Code
 
         private void AddFilamentButton_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new AddFilamentPage());
+            if (FillamentSingleton.FillamentsCount >= 3)
+            {
+                System.Windows.MessageBox.Show("You can not add more than 3 fillaments");
+            }else
+            {
+                this.NavigationService.Navigate(new AddFilamentPage());
+            }
         }
       
         private void StartPrintingButton_Click(object sender, RoutedEventArgs e)
