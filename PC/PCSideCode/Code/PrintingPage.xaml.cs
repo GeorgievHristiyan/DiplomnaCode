@@ -218,6 +218,7 @@ namespace Code
             }
         }
 
+        //Have to Rework it!
         private void PullInMaterial()
         {
             Dispatcher.Invoke(() =>
@@ -226,11 +227,24 @@ namespace Code
                 arduino.ArduinoDataSend($"{ AutoCompleteFillamentTextBox.Text[0] }");
             });
 
-            AutoResetEvent arduinoDataRecieved = new AutoResetEvent(false);
+            bool isMaterialExists = false;
+            while (!isMaterialExists)
+            {
+                Thread.Sleep(5000);
 
-            arduinoDataRecieved.WaitOne(12000);
+                string pullingInMessage = arduino.ArduinoDataReceive();
 
-            if (arduino.ArduinoDataReceive().Equals("Ready for printing\r"))
+                if (pullingInMessage.Contains("Ready for printing\r"))
+                {
+                    isMaterialExists = true;
+                }else if(pullingInMessage.Contains("No Fillament\r"))
+                {
+                    MessageBox.Show("There is not a material, please reload it and try again.");
+                    break;
+                }
+            }
+
+            if (isMaterialExists)
             {
                 Dispatcher.Invoke(() =>
                 {
@@ -322,8 +336,15 @@ namespace Code
             while (true)
             {
                 Thread.Sleep(5000);
-                if (arduino.ArduinoDataReceive().Contains("Ready with pulling out"))
+
+                string pullOutMessage = arduino.ArduinoDataReceive();
+
+                if (pullOutMessage.Contains("Ready with pulling out\r"))
                 {
+                    break;
+                }else if(pullOutMessage.Contains("No Fillament\r"))
+                {
+                    MessageBox.Show("There is not a material to pulling out");
                     break;
                 }
             }
