@@ -3,27 +3,26 @@ int signalWithNoise, noise, denoiseSignal;
 void setup() {
   // initialize serial communication at 9600 bits per second:
   Serial.begin(9600);
-  pinMode(6, OUTPUT);
+  for(int i = A0; i <= A2; i++){
+    pinMode(i, INPUT);
+  }
+
+  pinMode(A2, INPUT);
+  pinMode(A0, INPUT);
 }
  
 // the loop routine runs over and over again forever:
 void loop() {
 
-  digitalWrite(6, HIGH);
-
-  signalWithNoise = analogRead(A0);
-  Serial.println("Signal + Noise");
-  Serial.println(signalWithNoise);
+  delay(500);
+  Serial.print((int) analogRead(A0));
+  Serial.print( "  ");
+    
+  Serial.print((int)analogRead(A1));
+  Serial.print("  ");
+    
+  Serial.print((int)analogRead(A2));
+  Serial.println("  ");
   
-  digitalWrite(6, LOW);
-  noise = analogRead(A0);
-  Serial.println("Noise");
-  Serial.println(noise);
-  
-  denoiseSignal = signalWithNoise - noise;
-  // print out the value you read:
-
-  Serial.println("Signal");
-  Serial.println(denoiseSignal);
   delay(1);        // delay in between reads for stability
 }

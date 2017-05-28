@@ -355,6 +355,8 @@ namespace Code
             });
 
             TokenSource.Dispose();
+            printer.Close();
+            arduino.Close();
         }
 
         private void AutoCompleteFillamentTextBox_TextChanged(object sender, TextChangedEventArgs e)

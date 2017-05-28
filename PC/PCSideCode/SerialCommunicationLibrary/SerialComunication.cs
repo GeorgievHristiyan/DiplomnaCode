@@ -114,6 +114,11 @@ namespace SerialCommunicationLibrary
             }
             return false;
         }
+
+        public void Close()
+        {
+            Device.Close();
+        }
         protected string Receive()
         {
             try
@@ -122,12 +127,7 @@ namespace SerialCommunicationLibrary
             }
             catch (Exception)
             {
-                //
                 throw;
-            }
-            finally
-            {
-                Device.Close();
             }
         }
 

@@ -51,14 +51,14 @@
 
 
             <TextBox x:Name="AutoCompleteFillamentTextBox" HorizontalAlignment="Left" Background="OrangeRed" Height="22" Margin="134,93,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="AutoCompleteFillamentTextBox_TextChanged" IsEnabled="False"/>
-            <Border x:Name="AutoCompleteBorder" BorderBrush="Black"   
-                BorderThickness="1" Margin="134,114,46,185" Visibility="Collapsed">
-                <ScrollViewer x:Name="AutoCompletedStackPanel" VerticalScrollBarVisibility="Auto" Margin="0.2,0.2,0.2,46">
-                    <StackPanel Name="resultStack"></StackPanel>
-                </ScrollViewer>
-            </Border>
 
             <Button x:Name="StartButton" Content="Start" HorizontalAlignment="Left" Margin="10,147,0,0" VerticalAlignment="Top" Width="113" Click="StartButton_Click" IsEnabled="False"/>
+            <Border x:Name="AutoCompleteBorder" BorderBrush="Black"   
+                BorderThickness="1" Margin="134,114,46,185" Visibility="Collapsed">
+                <ScrollViewer x:Name="AutoCompletedStackPanel" VerticalScrollBarVisibility="Auto" Margin="0.2,0.2,0.2,-2">
+                    <StackPanel x:Name="resultStack"/>
+                </ScrollViewer>
+            </Border>
             <Button x:Name="BrowseGCodeButton" Content="Browse GCode" HorizontalAlignment="Left" Margin="10,122,0,0" VerticalAlignment="Top" Width="113" RenderTransformOrigin="2.619,1.583" Click="BrowseGCodeButton_Click" IsEnabled="False"/>
         </Grid>
         <Button x:Name="ConnectAgainToArduino" Content="Conect to arduino" HorizontalAlignment="Left" VerticalAlignment="Top" Width="108" Click="ConnectAgainToArduino_Click" Height="34"/>
